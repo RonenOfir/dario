@@ -4,14 +4,24 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
 import { Model } from 'mongoose';
+import { HttpStatus } from '@nestjs/common';
+import { ApiException } from 'src/exceptions/api.exception';
 
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+    try {
+      const createdUser = new this.userModel(createUserDto);
+      return await createdUser.save();
+    } catch (ex) {
+      throw new ApiException(
+        'Failed to save user to DB - check unique fields',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
   }
 
   findAll() {
