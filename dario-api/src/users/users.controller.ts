@@ -12,6 +12,11 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Get('/load-file')
+  upload() {
+    return this.usersService.loadJsonFile();
+  }
+
   @Get()
   findAll() {
     return this.usersService.findAll();
