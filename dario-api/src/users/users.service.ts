@@ -25,7 +25,7 @@ export class UsersService {
 
   }
 
-  loadJsonFile() {
+  async loadJsonFile() {
     fs.readFile('./src/assets/data.json', 'utf8', (error, data) => {
       if (error) {
         throw new ApiException(
@@ -35,10 +35,9 @@ export class UsersService {
       }
     
       const jsonData = JSON.parse(data);
-      jsonData.users.forEach(user => {
+      jsonData.users.forEach(async user => {
         try {
-          const createdUser = new this.userModel(user);
-          createdUser.save();
+          const createdUser = await this.create(user);
         } catch (ex) {
           throw new ApiException(
             'Upload file failed to save user to DB - check unique fields',
@@ -51,7 +50,7 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all users`;
+    return `This action returns all users`; 
   }
 
   findOne(id: number) {
