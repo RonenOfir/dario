@@ -1,18 +1,21 @@
 { "users": [{
     "id": "275667892",
-    "name": "Dana Aharoni",
+    "fname": "Dana",
+    "lname": "Aharoni",
     "email": "dana99@gmail.com",
     "password": "3576!765"
   },
   {
     "id": "275667893",
-    "name": "Yael Moran",
+    "fname": "Yael",
+    "lname": "Moran",
     "email": "yaelmoran@gmail.com",
     "password": "76545Sdd@"
   },
   {
     "id": "275667894",
-    "name": "Lior David",
+    "fname": "Lior",
+    "lname": "David",
     "email": "liord87@gmail.com",
     "password": "54645$322"
   }
